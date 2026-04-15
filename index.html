@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Fun Facts</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+
+        .fact-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            font-size: 1.2em;
+            line-height: 1.6;
+            font-weight: 500;
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        button {
+            background-color: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        button:hover {
+            background-color: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .fact-counter {
+            color: #999;
+            font-size: 0.9em;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 500px) {
+            .container {
+                padding: 25px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+                margin-bottom: 20px;
+            }
+
+            .fact-box {
+                padding: 20px;
+                min-height: 120px;
+                font-size: 1em;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎉 Fun Facts</h1>
+        <div class="fact-box" id="factBox">
+            Click "Get Fact" to discover something amazing!
+        </div>
+        <div class="button-group">
+            <button onclick="displayFact()">Get Fact</button>
+            <button onclick="randomFact()">Random</button>
+        </div>
+        <div class="fact-counter">
+            Fact <span id="factNumber">0</span> of <span id="totalFacts">0</span>
+        </div>
+    </div>
+
+    <script>
+        const facts = [
+            "Honey never spoils. Archaeologists have found 3,000-year-old honey in Egyptian tombs that was still edible!",
+            "A group of flamingos is called a 'flamboyance'.",
+            "Octopuses have three hearts. Two pump blood to the gills, while the third pumps it to the rest of the body.",
+            "You can't hum while holding your nose. Try it!",
+            "The shortest war in history lasted only 38 minutes between Britain and Zanzibar in 1896.",
+            "Bananas are berries, but strawberries aren't technically berries!",
+            "A group of crows is called a 'murder'.",
+            "The Great Wall of China isn't visible from space without aid.",
+            "Cleopatra lived closer to the Moon landing than to the construction of the Great Pyramid.",
+            "Sloths only come down from trees once a week to defecate.",
+            "A fingerprint takes 40 minutes to disappear from a glass surface.",
+            "There are more stars in space than grains of sand on all beaches on Earth.",
+            "Cats spend 70% of their lives sleeping.",
+            "The smell of freshly cut grass is actually a chemical distress signal released by grass.",
+            "A group of pugs is called a 'grumble'.",
+            "Wombats have cube-shaped poop!",
+            "You share 50% of your DNA with bananas.",
+            "Sharks have been around longer than dinosaurs.",
+            "The only mammal that can't jump is the elephant.",
+            "Alfred Nobel, the inventor of dynamite, invented dynamite to make mining and construction safer."
+        ];
+
+        let currentFactIndex = -1;
+
+        function updateCounter() {
+            document.getElementById('factNumber').textContent = currentFactIndex + 1;
+            document.getElementById('totalFacts').textContent = facts.length;
+        }
+
+        function displayFact(index) {
+            if (index !== undefined) {
+                currentFactIndex = index;
+            }
+            const factBox = document.getElementById('factBox');
+            factBox.textContent = facts[currentFactIndex];
+            updateCounter();
+        }
+
+        function randomFact() {
+            currentFactIndex = Math.floor(Math.random() * facts.length);
+            displayFact(currentFactIndex);
+        }
+
+        // Update counter on page load
+        document.getElementById('totalFacts').textContent = facts.length;
+    </script>
+</body>
+</html>
